@@ -2,7 +2,7 @@
 
 Create temporary directory to use as GnuPG home directory.
 
-```shell
+```console
 $ export GNUPGHOME=$(mktemp -d -t gnupg_$(date +%Y%m%d%H%M)_XXX)
 $ echo ${GNUPGHOME}
 /tmp/gnupg_202207281850_D6W
@@ -10,8 +10,8 @@ $ echo ${GNUPGHOME}
 
 Create a `gpg.conf`.
 
-```shell
-wget -O $GNUPGHOME/gpg.conf https://raw.githubusercontent.com/drduh/config/master/gpg.conf
+```console
+$ wget -O $GNUPGHOME/gpg.conf https://raw.githubusercontent.com/drduh/config/master/gpg.conf
 --2022-07-28 18:51:51--  https://raw.githubusercontent.com/drduh/config/master/gpg.conf
 Connecting to 192.168.128.3:3128... connected.
 Proxy request sent, awaiting response... 200 OK
@@ -23,8 +23,8 @@ Saving to: ‘/tmp/gnupg_202207281850_D6W/gpg.conf’
 2022-07-28 18:51:51 (11.1 MB/s) - ‘/tmp/gnupg_202207281850_D6W/gpg.conf’ saved [2101/2101]
 ```
 
-```shell
-grep -ve "^#" $GNUPGHOME/gpg.conf
+```console
+$ grep -ve "^#" $GNUPGHOME/gpg.conf
 personal-cipher-preferences AES256 AES192 AES
 personal-digest-preferences SHA512 SHA384 SHA256
 personal-compress-preferences ZLIB BZIP2 ZIP Uncompressed
@@ -51,7 +51,7 @@ Create a secure password for the master key.
 
 Note: not my real password!
 
-```shell
+```console
 gpg --gen-random --armor 0 24
 gpg: keybox '/tmp/gnupg_202207281850_D6W/pubring.kbx' created
 zbsr7dX48lGdlCPq5jlG5ZTsFenffS/d
@@ -59,7 +59,7 @@ zbsr7dX48lGdlCPq5jlG5ZTsFenffS/d
 
 Generate the master key for *certification* only.
 
-```shell
+```console
 $ gpg --expert --full-generate-key
 Please select what kind of key you want:
    (1) RSA and RSA (default)
@@ -141,13 +141,13 @@ pub   rsa4096/0x5E405915C1A26E43 2022-07-28 [C]
 uid                              Cees van de Griend <cees@griend.eu>
 ```
 
-```shell
+```console
 $ export KEYID=0x5E405915C1A26E43
 ```
 
 Add a JPEG photo to the master key.
 
-```shell
+```console
 $ gpg --edit-key ${KEYID}
 Secret key is available.
 
@@ -177,7 +177,7 @@ gpg> save
 
 Add a subkey for *signing*.
 
-```shell
+```console
 $ gpg --expert --edit-key ${KEYID}
 Secret key is available.
 
@@ -232,7 +232,7 @@ gpg> save
 
 Add a subkey for *encryption*.
 
-```shell
+```console
 $ gpg --expert --edit-key ${KEYID}
 Secret key is available.
 
@@ -291,7 +291,7 @@ gpg> save
 
 Add a subkey for *authentication* so we can use it as a public/private SSH key.
 
-```shell
+```console
 $ gpg --expert --edit-key ${KEYID}
 Secret key is available.
 
@@ -396,8 +396,8 @@ Add uid (email addresses) to the master key.
 Edit the trust to *ultimate* and set the first uid (cees@griend.eu)
 as *primary*.
 
-```shell
-gpg --expert --edit-key ${KEYID}
+```console
+$ gpg --expert --edit-key ${KEYID}
 Secret key is available.
 
 sec  rsa4096/0x5E405915C1A26E43
@@ -754,7 +754,7 @@ gpg> save
 
 Check the (secret) keys.
 
-```shell
+```console
 $ gpg -K
 /tmp/gnupg_202207281850_D6W/pubring.kbx
 ---------------------------------------
@@ -773,19 +773,19 @@ ssb   rsa4096/0xD59E628B324782E1 2022-07-28 [A] [expires: 2023-07-28]
 
 Backup the secret master key.
 
-```shell
+```console
 $ gpg --armor --export-secret-keys $KEYID > $GNUPGHOME/master.key
 ```
 
 Backup all the secret subkeys.
 
-```shell
+```console
 $ gpg --armor --export-secret-subkeys $KEYID > $GNUPGHOME/sub.key
 ```
 
 Generate a revoke certificate for the master key and store it in a very safe place.
 
-```shell
+```console
 $ gpg --output $GNUPGHOME/revoke.asc --gen-revoke $KEYID
 
 sec  rsa4096/0x5E405915C1A26E43 2022-07-28 Cees van de Griend <cees@griend.eu>
@@ -816,14 +816,14 @@ your machine might store the data and make it available to others!
 
 Backup the temporary GPG home directory.
 
-```shell
+```console
 $ tar cvzf ~/Projects/rwkn/tmp/gnupg_202207281850_D6W.tar.gz gnupg_202207281850_D6W
 ```
 
 Export the public master and public subkeys.
 
-```shell
-gpg --armor --export $KEYID | tee gpg-$KEYID-$(date +%F).asc
+```console
+$ gpg --armor --export $KEYID | tee gpg-$KEYID-$(date +%F).asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQINBGLiv/EBEADkRJ4PU+mQVxYCblZWgFTq6J+M4eRF4+aGxmKQaSB1wDtLs3OW
@@ -1055,7 +1055,7 @@ t8rSNW6e
 
 Send the public keys to the keyservers.
 
-```shell
+```console
 $ gpg --send-key $KEYID
 gpg: sending key 0x5E405915C1A26E43 to hkps://keys.openpgp.org
 $ gpg --keyserver pgp.mit.edu --send-key $KEYID

@@ -1,6 +1,6 @@
 # SSH
 
-```shell
+```console
 $ gpg -k --with-keygrip
 /home/cees/.gnupg/pubring.kbx
 -----------------------------
@@ -28,7 +28,7 @@ sub   rsa4096/0xD59E628B324782E1 2022-07-28 [A] [expires: 2023-07-28]
 
 ```
 
-```shell
+```console
 $ echo 966FEF98516BF2F041E88BA8C2EB59C35FB05FC1 > ~/.gnupg/sshcontrol
 $ ssh-add -L
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDoQwOWd2+bxV6TaaRtQhI5uMES/oM4hMWjsGVhfMeX19RIbfgy4qNapiPvciQeJTmvmltRGCzWLJ+3DMjWe09pP1cX5JPMhb2vH1v8qmJZ3LtC/BupfVrDcg8/C/u3p48APUC8wb2m9Fa7oAgrQSQuMpjJBIfiR1TiinEb8bsEvJpTzZvbf1/KvosKRTmlx6n3aGIlp1Ly6mJZU0hyleXi4MuTZXJIvqfHnngUO5i/AkSoCgnwNkL3XGhR7eS8YRy25OijCCA3mT3RJ2/tQiyuXWvEnuyhmQ23i6S7d4x6O1qdx1D3xKemVxKOzkNOXCvttjtMKRdmZ+cnx8fw5bnQx+O+s/05x499udy8LBLF+UPXUyATyn6ok8thhsQ1p0d3ZCWrwoNCaKDaug13oVLdNLrdiEgUYmkLKJA0015QlOVmWodXduawsqJAkKnH45L5iRfm4WYkWDp/x4FwXe5D0fN8kQLjZHKrxdvlO2gVuIsYqk8ifzi0sIRkx0n2kcvjAZWzAbDY6CWLcu9bqAXxSfr28IcIW/CLjVyv7M5x8sSKOo/5XxWrK2PHdF5S7o37ZDtG6ItMUqUPYGA9SJIhnHGb/CSKfKZtDe6ODka2A49MzE91alIKc22OeP5APaF23Rx9f88YcEJK05fvr0Xlx6peHLvqPm2Ku9r0UspWcw== (none)

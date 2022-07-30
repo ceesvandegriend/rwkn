@@ -2,7 +2,7 @@
 
 Install packages on Raspberry OS.
 
-```shell
+```console
 $ sudo apt -y install wget gnupg2 gnupg-agent dirmngr cryptsetup scdaemon pcscd secure-delete hopenpgp-tools yubikey-personalization
 Reading package lists... Done
 Building dependency tree... Done
@@ -107,8 +107,8 @@ Processing triggers for initramfs-tools (0.140) ...
 
 Install Python packages on Raspberry OS.
 
-```shell
-sudo apt -y install python3-pip python3-pyscard
+```console
+$ sudo apt -y install python3-pip python3-pyscard
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -131,7 +131,7 @@ Setting up python3-pyscard (2.0.0-1+b2) ...
 
 Install Python modules.
 
-```shell
+```console
 $ pip3 install PyOpenSSL
 Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
 Collecting PyOpenSSL
@@ -150,8 +150,8 @@ Installing collected packages: pycparser, cffi, cryptography, PyOpenSSL
 Successfully installed PyOpenSSL-22.0.0 cffi-1.15.1 cryptography-37.0.4 pycparser-2.21
 ```
 
-```shell
-pip3 install yubikey-manager
+```console
+$ pip3 install yubikey-manager
 Looking in indexes: https://pypi.org/simple, https://www.piwheels.org/simple
 Collecting yubikey-manager
   Downloading https://www.piwheels.org/simple/yubikey-manager/yubikey_manager-4.0.9-py3-none-any.whl (147 kB)
@@ -175,7 +175,7 @@ Successfully installed click-8.1.3 fido2-1.0.0 yubikey-manager-4.0.9
 
 Restart pcscd service.
 
-```shell
+```console
 $ sudo systemctl start pcscd.service
 $ sudo systemctl status pcscd.service
 ● pcscd.service - PC/SC Smart Card Daemon
